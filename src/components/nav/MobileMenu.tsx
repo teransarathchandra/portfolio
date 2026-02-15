@@ -17,6 +17,11 @@ export default function MobileMenu({ active, onClose }: MobileMenuProps) {
   // Focus the first link when menu opens
   useEffect(() => {
     firstLinkRef.current?.focus();
+    // Lock body scroll when menu is open
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, []);
 
   // Close on Escape
@@ -52,6 +57,7 @@ export default function MobileMenu({ active, onClose }: MobileMenuProps) {
   return (
     <motion.div
       ref={menuRef}
+      id="mobile-nav"
       className="mobile-menu-overlay fixed inset-0 z-40 flex flex-col bg-background/95 backdrop-blur-2xl md:hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -72,11 +78,12 @@ export default function MobileMenu({ active, onClose }: MobileMenuProps) {
               href={href}
               ref={i === 0 ? firstLinkRef : undefined}
               onClick={onClose}
-              className={`rounded-xl px-6 py-3 text-lg font-medium transition-colors ${
+              className={`rounded-xl px-8 py-4 text-lg font-medium transition-colors min-h-[48px] inline-flex items-center ${
                 isActive
-                  ? 'text-accent'
-                  : 'text-secondary-text hover:text-primary-text'
+                  ? 'text-accent bg-accent-dim'
+                  : 'text-secondary-text hover:text-primary-text hover:bg-white/5'
               }`}
+              aria-current={isActive ? 'page' : undefined}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.05 * i, duration: 0.3 }}
@@ -89,9 +96,9 @@ export default function MobileMenu({ active, onClose }: MobileMenuProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05 * navItems.length, duration: 0.3 }}
-          className="mt-4"
+          className="mt-6"
         >
-          <Button href="#contact" onClick={onClose}>
+          <Button href="#contact" size="lg" onClick={onClose}>
             Hire me
           </Button>
         </motion.div>

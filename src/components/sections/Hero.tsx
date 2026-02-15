@@ -58,7 +58,7 @@ export default function Hero() {
       <Container className="relative z-10">
         <div className="max-w-3xl">
           <Reveal delay={0.1}>
-            <p className="mb-4 font-mono text-sm text-accent">
+            <p className="mb-4 font-mono text-sm tracking-widest uppercase text-accent">
               Hi, my name is
             </p>
           </Reveal>
@@ -66,7 +66,7 @@ export default function Hero() {
           <Reveal delay={0.2}>
             <h1
               id="hero-heading"
-              className="mb-4 text-4xl font-bold tracking-tight text-primary-text sm:text-5xl md:text-6xl lg:text-7xl"
+              className="mb-4 text-4xl font-bold tracking-tight text-primary-text sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1]"
             >
               {personalInfo.name}
               <span className="text-accent">.</span>
@@ -74,13 +74,13 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={0.3}>
-            <p className="mb-6 text-xl font-medium text-secondary-text sm:text-2xl md:text-3xl">
+            <p className="mb-6 text-xl font-medium text-secondary-text sm:text-2xl md:text-3xl leading-snug">
               {personalInfo.role}
             </p>
           </Reveal>
 
           <Reveal delay={0.4}>
-            <p className="mb-8 max-w-xl text-base leading-relaxed text-secondary-text sm:text-lg">
+            <p className="mb-10 max-w-xl text-base leading-relaxed text-secondary-text sm:text-lg">
               {personalInfo.bio}
             </p>
           </Reveal>
@@ -97,14 +97,14 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={0.6}>
-            <div className="mt-10 flex items-center gap-4">
+            <div className="mt-12 flex items-center gap-5">
               {socialLinks.map(({ label, url, icon }) => (
                 <a
                   key={label}
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-lg p-2 text-secondary-text transition-colors hover:text-accent"
+                  className="rounded-lg p-2.5 text-secondary-text transition-colors hover:text-accent hover:bg-white/5"
                   aria-label={label}
                 >
                   <SocialIcon icon={icon} />

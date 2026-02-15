@@ -12,7 +12,7 @@ export default function Projects() {
     <Section id="projects" bg="surface">
       <Container>
         <Reveal>
-          <p className="mb-2 font-mono text-sm text-accent">What I&apos;ve built</p>
+          <p className="mb-2 font-mono text-sm tracking-widest uppercase text-accent">What I&apos;ve built</p>
           <h2 id="projects-heading" className="mb-12 text-3xl font-bold text-primary-text sm:text-4xl">
             Featured Projects
           </h2>
@@ -23,9 +23,9 @@ export default function Projects() {
             <Reveal key={project.title} delay={i * 0.1}>
               <Card className="flex h-full flex-col">
                 {/* Thumbnail placeholder */}
-                <div className="mb-4 aspect-video w-full overflow-hidden rounded-xl bg-background">
+                <div className="mb-5 aspect-video w-full overflow-hidden rounded-xl border border-border bg-background">
                   <div className="flex h-full items-center justify-center">
-                    <span className="font-mono text-sm text-grid-line-light">
+                    <span className="font-mono text-sm text-grid-line-light" aria-hidden="true">
                       {project.title}
                     </span>
                   </div>
@@ -39,24 +39,24 @@ export default function Projects() {
                 </p>
 
                 {/* Highlights */}
-                <ul className="mb-4 space-y-1">
+                <ul className="mb-4 space-y-1.5">
                   {project.highlights.map((h) => (
                     <li key={h} className="flex items-start gap-2 text-sm text-secondary-text">
-                      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />
+                      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" aria-hidden="true" />
                       {h}
                     </li>
                   ))}
                 </ul>
 
                 {/* Stack badges */}
-                <div className="mb-4 flex flex-wrap gap-1.5">
+                <div className="mb-5 flex flex-wrap gap-1.5">
                   {project.stack.map((tech) => (
                     <Badge key={tech}>{tech}</Badge>
                   ))}
                 </div>
 
                 {/* Links */}
-                <div className="mt-auto flex items-center gap-3 pt-2">
+                <div className="mt-auto flex items-center gap-3 border-t border-border pt-4">
                   {project.github && (
                     <Button
                       href={project.github}
@@ -64,6 +64,7 @@ export default function Projects() {
                       size="sm"
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`View ${project.title} source on GitHub`}
                     >
                       <GitHubIcon className="h-4 w-4" />
                       Code
@@ -76,6 +77,7 @@ export default function Projects() {
                       size="sm"
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`View ${project.title} live demo`}
                     >
                       <ExternalLinkIcon />
                       Live

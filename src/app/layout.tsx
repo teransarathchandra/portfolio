@@ -51,14 +51,14 @@ export default function RootLayout({
       >
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-background focus:font-semibold"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-background focus:font-semibold focus:shadow-lg"
         >
           Skip to main content
         </a>
         <SmoothScrollProvider />
         <GridOverlay />
         <Navbar />
-        <main id="main-content" className="relative z-10">{children}</main>
+        <main id="main-content" role="main" className="relative z-10">{children}</main>
       </body>
     </html>
   );

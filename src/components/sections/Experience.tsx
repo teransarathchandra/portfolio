@@ -8,7 +8,7 @@ export default function Experience() {
     <Section id="experience">
       <Container>
         <Reveal>
-          <p className="mb-2 font-mono text-sm text-accent">Where I&apos;ve worked</p>
+          <p className="mb-2 font-mono text-sm tracking-widest uppercase text-accent">Where I&apos;ve worked</p>
           <h2 id="experience-heading" className="mb-12 text-3xl font-bold text-primary-text sm:text-4xl">
             Experience
           </h2>
@@ -39,7 +39,7 @@ export default function Experience() {
                         isLeft ? 'md:mr-auto md:pr-8 md:text-right' : 'md:ml-auto md:pl-8'
                       }`}
                     >
-                      <span className="font-mono text-xs text-accent">{exp.period}</span>
+                      <span className="font-mono text-xs tracking-wider text-accent">{exp.period}</span>
                       <h3 className="mt-1 text-lg font-semibold text-primary-text">
                         {exp.role}
                       </h3>
@@ -57,7 +57,7 @@ export default function Experience() {
                               isLeft ? 'md:flex-row-reverse md:text-right' : ''
                             }`}
                           >
-                            <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent/60" />
+                            <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent/60" aria-hidden="true" />
                             {h}
                           </li>
                         ))}

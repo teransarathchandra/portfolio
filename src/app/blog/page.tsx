@@ -9,7 +9,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-background pt-24 pb-16">
       <Container>
-        <p className="mb-2 font-mono text-sm text-accent">Blog</p>
+        <p className="mb-2 font-mono text-sm tracking-widest uppercase text-accent">Blog</p>
         <h1 className="mb-8 text-3xl font-bold text-primary-text sm:text-4xl">
           Blog
         </h1>

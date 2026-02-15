@@ -25,6 +25,10 @@ export const fonts = {
 export const spacing = {
   sectionY: 'py-24 md:py-32',
   containerX: 'px-4 sm:px-6 lg:px-8',
+  /** Gap between section heading and content */
+  headingGap: 'mb-12',
+  /** Card internal padding */
+  cardPadding: 'p-6',
 } as const;
 
 export const animation = {

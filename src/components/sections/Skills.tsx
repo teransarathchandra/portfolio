@@ -9,7 +9,7 @@ export default function Skills() {
     <Section id="skills">
       <Container>
         <Reveal>
-          <p className="mb-2 font-mono text-sm text-accent">What I work with</p>
+          <p className="mb-2 font-mono text-sm tracking-widest uppercase text-accent">What I work with</p>
           <h2 id="skills-heading" className="mb-12 text-3xl font-bold text-primary-text sm:text-4xl">
             Skills &amp; Technologies
           </h2>
