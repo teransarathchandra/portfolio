@@ -29,7 +29,7 @@ export const spacing = {
 
 export const animation = {
   /** Default transition for interactive elements */
-  fast: 'transition-all duration-200 ease-out',
+  fast: 'transition-[color,background-color,border-color,box-shadow,transform] duration-200 ease-out',
   /** Section reveal animation duration (ms) */
   revealDuration: 0.6,
   /** Stagger delay between children (s) */

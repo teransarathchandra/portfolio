@@ -1,19 +1,16 @@
 'use client';
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { navItems, personalInfo } from '@/content/portfolio';
 import { useActiveSection } from '@/hooks/useActiveSection';
 import Button from '@/components/ui/Button';
 import MobileMenu from './MobileMenu';
 
+const sectionIds = navItems.map((item) => item.href.replace('#', ''));
+
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  const sectionIds = useMemo(
-    () => navItems.map((item) => item.href.replace('#', '')),
-    []
-  );
   const active = useActiveSection(sectionIds);
 
   const toggleMobile = useCallback(() => setMobileOpen((v) => !v), []);
