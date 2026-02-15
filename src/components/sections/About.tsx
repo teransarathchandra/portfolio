@@ -5,12 +5,12 @@ import Reveal from '@/components/ui/Reveal';
 
 export default function About() {
   return (
-    <Section id="about" bg="surface">
+    <Section id="about" bg="surface" fullHeight>
       <Container>
-        <div className="grid gap-12 md:grid-cols-2 md:items-center md:gap-16">
+        <div className="grid gap-12 md:grid-cols-2 md:items-start md:gap-16">
           {/* Avatar placeholder */}
           <Reveal direction="left">
-            <div className="relative mx-auto aspect-square w-64 overflow-hidden rounded-2xl border border-border md:mx-0 md:w-full md:max-w-sm">
+            <div className="relative mx-auto aspect-square w-64 overflow-hidden rounded-2xl border border-border md:sticky md:top-24 md:mx-0 md:w-full md:max-w-sm">
               <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-surface to-background">
                 <span className="text-6xl font-bold text-accent/20" aria-hidden="true">
                   {personalInfo.name

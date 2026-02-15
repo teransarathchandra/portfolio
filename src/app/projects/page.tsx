@@ -10,8 +10,8 @@ export const metadata = {
 
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen bg-background pt-24 pb-16">
-      <Container>
+    <div className="min-h-screen bg-background pt-24 pb-16 flex flex-col">
+      <Container className="flex-1 flex flex-col justify-center">
         <p className="mb-2 font-mono text-sm tracking-widest uppercase text-accent">All projects</p>
         <h1 className="mb-12 text-3xl font-bold text-primary-text sm:text-4xl">
           Projects

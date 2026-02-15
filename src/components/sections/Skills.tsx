@@ -6,7 +6,7 @@ import SkillTags from './SkillTags';
 
 export default function Skills() {
   return (
-    <Section id="skills">
+    <Section id="skills" fullHeight>
       <Container>
         <Reveal>
           <p className="mb-2 font-mono text-sm tracking-widest uppercase text-accent">What I work with</p>
@@ -15,14 +15,16 @@ export default function Skills() {
           </h2>
         </Reveal>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-3 items-stretch">
           {skillGroups.map((group, gi) => (
-            <Reveal key={group.category} delay={gi * 0.1}>
-              <div className="rounded-2xl border border-border bg-surface p-6">
+            <Reveal key={group.category} delay={gi * 0.1} className="flex">
+              <div className="flex-1 flex flex-col rounded-2xl border border-border bg-surface p-6">
                 <h3 className="mb-4 text-lg font-semibold text-primary-text">
                   {group.category}
                 </h3>
-                <SkillTags skills={group.skills} />
+                <div className="flex-1">
+                  <SkillTags skills={group.skills} />
+                </div>
               </div>
             </Reveal>
           ))}

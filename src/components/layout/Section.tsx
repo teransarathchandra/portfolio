@@ -7,6 +7,8 @@ interface SectionProps {
   children: ReactNode;
   className?: string;
   bg?: BgVariant;
+  /** When true, section gets min-h-screen with flex centering */
+  fullHeight?: boolean;
 }
 
 const bgMap: Record<BgVariant, string> = {
@@ -20,11 +22,14 @@ export default function Section({
   children,
   className = '',
   bg = 'default',
+  fullHeight = false,
 }: SectionProps) {
   return (
     <section
       id={id}
-      className={`relative py-24 md:py-32 ${bgMap[bg]} ${className}`}
+      className={`relative py-24 md:py-32 ${bgMap[bg]} ${
+        fullHeight ? 'min-h-screen flex flex-col justify-center' : ''
+      } ${className}`}
       aria-labelledby={`${id}-heading`}
     >
       {children}

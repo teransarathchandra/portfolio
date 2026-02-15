@@ -43,7 +43,7 @@ export default function SmoothScrollProvider() {
       const el = document.querySelector(href);
       if (el) {
         e.preventDefault();
-        lenis.scrollTo(el as HTMLElement, { offset: -80 });
+        lenis.scrollTo(el as HTMLElement, { offset: -64 });
       }
     };
     document.addEventListener('click', handleClick);

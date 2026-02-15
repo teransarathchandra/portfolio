@@ -31,7 +31,7 @@ export default function Contact() {
   };
 
   return (
-    <Section id="contact" bg="surface">
+    <Section id="contact" bg="surface" fullHeight>
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
@@ -118,11 +118,11 @@ export default function Contact() {
                     placeholder="Tell me about your project…"
                   />
                 </div>
-                <div className="flex flex-col items-center gap-4 pt-2 sm:flex-row">
-                  <Button type="submit" size="lg" disabled={status === 'sending'}>
+                <div className="flex flex-col items-center gap-5 pt-4">
+                  <Button type="submit" size="lg" className="w-full sm:w-auto sm:min-w-[200px]" disabled={status === 'sending'}>
                     {status === 'sending' ? 'Opening mail…' : 'Send message'}
                   </Button>
-                  <span className="text-sm text-secondary-text">
+                  <p className="text-sm text-secondary-text">
                     or email me directly at{' '}
                     <a
                       href={`mailto:${personalInfo.email}`}
@@ -130,7 +130,7 @@ export default function Contact() {
                     >
                       {personalInfo.email}
                     </a>
-                  </span>
+                  </p>
                 </div>
               </form>
             )}

@@ -9,7 +9,7 @@ import { GitHubIcon, ExternalLinkIcon } from '@/components/ui/Icons';
 
 export default function Projects() {
   return (
-    <Section id="projects" bg="surface">
+    <Section id="projects" bg="surface" fullHeight>
       <Container>
         <Reveal>
           <p className="mb-2 font-mono text-sm tracking-widest uppercase text-accent">What I&apos;ve built</p>
@@ -65,6 +65,7 @@ export default function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`View ${project.title} source on GitHub`}
+                      className="border border-border"
                     >
                       <GitHubIcon className="h-4 w-4" />
                       Code

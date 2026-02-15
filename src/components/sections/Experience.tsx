@@ -5,7 +5,7 @@ import Reveal from '@/components/ui/Reveal';
 
 export default function Experience() {
   return (
-    <Section id="experience">
+    <Section id="experience" fullHeight>
       <Container>
         <Reveal>
           <p className="mb-2 font-mono text-sm tracking-widest uppercase text-accent">Where I&apos;ve worked</p>
