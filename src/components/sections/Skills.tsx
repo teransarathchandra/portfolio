@@ -1,16 +1,8 @@
-'use client';
-
 import { skillGroups } from '@/content/portfolio';
 import Section from '@/components/layout/Section';
 import Container from '@/components/layout/Container';
 import Reveal from '@/components/ui/Reveal';
-import StaggerContainer from '@/components/ui/StaggerContainer';
-import { motion } from 'framer-motion';
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-};
+import SkillTags from './SkillTags';
 
 export default function Skills() {
   return (
@@ -19,7 +11,7 @@ export default function Skills() {
         <Reveal>
           <p className="mb-2 font-mono text-sm text-accent">What I work with</p>
           <h2 id="skills-heading" className="mb-12 text-3xl font-bold text-primary-text sm:text-4xl">
-            Skills & Technologies
+            Skills &amp; Technologies
           </h2>
         </Reveal>
 
@@ -30,17 +22,7 @@ export default function Skills() {
                 <h3 className="mb-4 text-lg font-semibold text-primary-text">
                   {group.category}
                 </h3>
-                <StaggerContainer className="flex flex-wrap gap-2">
-                  {group.skills.map((skill) => (
-                    <motion.span
-                      key={skill.name}
-                      variants={itemVariants}
-                      className="rounded-full border border-border bg-background px-3 py-1.5 text-sm text-secondary-text transition-colors hover:border-accent/30 hover:text-accent"
-                    >
-                      {skill.name}
-                    </motion.span>
-                  ))}
-                </StaggerContainer>
+                <SkillTags skills={group.skills} />
               </div>
             </Reveal>
           ))}

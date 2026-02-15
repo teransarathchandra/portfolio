@@ -11,9 +11,11 @@ import { useReducedMotion } from '@/hooks/useReducedMotion';
 export default function SmoothScrollProvider() {
   const reducedMotion = useReducedMotion();
   const lenisRef = useRef<Lenis | null>(null);
+  const rafIdRef = useRef<number>(0);
 
   useEffect(() => {
     if (reducedMotion) {
+      cancelAnimationFrame(rafIdRef.current);
       lenisRef.current?.destroy();
       lenisRef.current = null;
       return;
@@ -28,9 +30,9 @@ export default function SmoothScrollProvider() {
 
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafIdRef.current = requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+    rafIdRef.current = requestAnimationFrame(raf);
 
     // Make anchors work with Lenis
     const handleClick = (e: MouseEvent) => {
@@ -47,6 +49,7 @@ export default function SmoothScrollProvider() {
     document.addEventListener('click', handleClick);
 
     return () => {
+      cancelAnimationFrame(rafIdRef.current);
       document.removeEventListener('click', handleClick);
       lenis.destroy();
     };

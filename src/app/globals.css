@@ -38,6 +38,13 @@ html {
   html {
     scroll-behavior: auto;
   }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 body {
@@ -46,6 +53,18 @@ body {
   font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ─── Anchor scroll offset ───────────────── */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* ─── Heading text wrap ──────────────────── */
+h1, h2, h3 {
+  text-wrap: balance;
 }
 
 /* ─── Focus styles ───────────────────────── */
@@ -95,4 +114,9 @@ body {
 }
 .neon-text-glow {
   text-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* ─── Mobile menu overlay ────────────────── */
+.mobile-menu-overlay {
+  overscroll-behavior: contain;
 }

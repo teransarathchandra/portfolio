@@ -42,14 +42,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" style={{ colorScheme: 'dark' }}>
+      <head>
+        <meta name="theme-color" content="#121212" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-primary-text`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-background focus:font-semibold"
+        >
+          Skip to main content
+        </a>
         <SmoothScrollProvider />
         <GridOverlay />
         <Navbar />
-        <main className="relative z-10">{children}</main>
+        <main id="main-content" className="relative z-10">{children}</main>
       </body>
     </html>
   );

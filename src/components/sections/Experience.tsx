@@ -1,5 +1,3 @@
-'use client';
-
 import { experience } from '@/content/portfolio';
 import Section from '@/components/layout/Section';
 import Container from '@/components/layout/Container';

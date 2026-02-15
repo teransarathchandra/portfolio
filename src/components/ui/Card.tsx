@@ -11,7 +11,7 @@ export default function Card({ children, className = '', hover = true }: CardPro
     <div
       className={`rounded-2xl border border-border bg-surface p-6 ${
         hover
-          ? 'transition-all duration-300 ease-out hover:-translate-y-1 hover:border-accent/20 hover:shadow-lg hover:shadow-accent-glow/5'
+          ? 'transition-[color,border-color,box-shadow,transform] duration-300 ease-out hover:-translate-y-1 hover:border-accent/20 hover:shadow-lg hover:shadow-accent-glow/5'
           : ''
       } ${className}`}
     >

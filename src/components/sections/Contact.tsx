@@ -45,11 +45,13 @@ export default function Contact() {
                   <input
                     type="text"
                     id="name"
+                    name="name"
                     required
+                    autoComplete="name"
                     value={formData.name}
                     onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
                     className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-primary-text placeholder-secondary-text/50 transition-colors focus:border-accent/40 focus:outline-none focus:ring-1 focus:ring-accent/30"
-                    placeholder="Your name"
+                    placeholder="Your name…"
                   />
                 </div>
                 <div>
@@ -59,11 +61,14 @@ export default function Contact() {
                   <input
                     type="email"
                     id="email"
+                    name="email"
                     required
+                    autoComplete="email"
+                    spellCheck={false}
                     value={formData.email}
                     onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
                     className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-primary-text placeholder-secondary-text/50 transition-colors focus:border-accent/40 focus:outline-none focus:ring-1 focus:ring-accent/30"
-                    placeholder="your@email.com"
+                    placeholder="your@email.com…"
                   />
                 </div>
               </div>
@@ -73,12 +78,14 @@ export default function Contact() {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   required
                   rows={5}
+                  autoComplete="off"
                   value={formData.message}
                   onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
                   className="w-full resize-none rounded-xl border border-border bg-background px-4 py-3 text-sm text-primary-text placeholder-secondary-text/50 transition-colors focus:border-accent/40 focus:outline-none focus:ring-1 focus:ring-accent/30"
-                  placeholder="Tell me about your project..."
+                  placeholder="Tell me about your project…"
                 />
               </div>
               <div className="flex flex-col items-center gap-4 pt-2 sm:flex-row">

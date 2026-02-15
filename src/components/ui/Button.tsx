@@ -40,7 +40,7 @@ export default function Button({
   className = '',
   ...props
 }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 ease-out cursor-pointer ${variants[variant]} ${sizes[size]} ${className}`;
+  const classes = `inline-flex items-center justify-center gap-2 font-medium transition-[color,background-color,border-color,box-shadow,transform] duration-200 ease-out cursor-pointer ${variants[variant]} ${sizes[size]} ${className}`;
 
   if ('href' in props && props.href) {
     const { href, ...rest } = props as ButtonAsLink;
