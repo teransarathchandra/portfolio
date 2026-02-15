@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Developer Portfolio
 
-## Getting Started
+A production-grade developer portfolio built with **Next.js 16** (App Router), **TypeScript**, **Tailwind CSS v4**, and **Framer Motion**.
 
-First, run the development server:
+## Quick Start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # Production build
+npm run start      # Serve production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Edit Content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All site content is driven from a single file:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/content/portfolio.ts
+```
 
-## Learn More
+Update your **name, bio, skills, projects, experience, and social links** there — every component reads from this config.
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+├── app/
+│   ├── layout.tsx           # Root layout, metadata, providers
+│   ├── page.tsx             # Home (single-page portfolio)
+│   ├── not-found.tsx        # 404 page
+│   ├── blog/page.tsx        # Blog placeholder
+│   ├── projects/page.tsx    # Projects listing route
+│   ├── resume/page.tsx      # Resume placeholder
+│   └── globals.css          # Tailwind + design tokens + utilities
+├── components/
+│   ├── layout/              # Container, Section, GridOverlay
+│   ├── nav/                 # Navbar, MobileMenu
+│   ├── providers/           # SmoothScrollProvider (Lenis)
+│   ├── sections/            # Hero, About, Skills, Projects, Experience, Contact, Footer
+│   └── ui/                  # Button, Badge, Card, Reveal, StaggerContainer
+├── content/
+│   └── portfolio.ts         # All site data (edit this!)
+├── hooks/
+│   ├── useActiveSection.ts  # IntersectionObserver-based active section
+│   └── useReducedMotion.ts  # Respects prefers-reduced-motion
+└── styles/
+    └── tokens.ts            # Design system tokens (JS reference)
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Design System
 
-## Deploy on Vercel
+| Token           | Value                     | Usage                              |
+|-----------------|---------------------------|------------------------------------|
+| Background      | `#121212`                 | Page background                    |
+| Surface         | `#1A1A1D`                 | Cards, alternate sections          |
+| Primary Text    | `#F5F5F5`                 | Headings, body text                |
+| Secondary Text  | `#A0A0A8`                 | Descriptions, muted text           |
+| Accent (Neon)   | `#C6FF00`                 | Buttons, links, highlights only    |
+| Grid Lines      | `#2A2A2E` / `#3A3A40`    | Subtle grid overlay, borders       |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**70/20/10 rule**: 70% dark background, 20% surface/text, 10% neon accent.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Key Features
+
+- **Parallax**: Subtle `useScroll` + `useTransform` on hero decorative blobs only
+- **Animations**: `whileInView` reveal triggers via Framer Motion
+- **Smooth scroll**: Lenis integration, auto-disabled when `prefers-reduced-motion`
+- **Accessibility**: Focus states, semantic HTML, keyboard nav, ARIA landmarks
+- **Performance**: CSS-first effects, no raw scroll listeners, static generation
+- **Responsive**: Mobile-first, collapsible navbar with animated hamburger
+
+## Tech Stack
+
+- Next.js 16 (App Router)
+- TypeScript
+- Tailwind CSS v4
+- Framer Motion
+- Lenis (smooth scroll)
+
+## Deploy
+
+Deploy to [Vercel](https://vercel.com) with zero config, or any Node.js host.
