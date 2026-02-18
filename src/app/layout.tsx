@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/nav/Navbar";
 import GridOverlay from "@/components/layout/GridOverlay";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
+import LiquidGlassCursor from "@/components/effects/LiquidGlassCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,6 +58,7 @@ export default function RootLayout({
         </a>
         <SmoothScrollProvider />
         <GridOverlay />
+        <LiquidGlassCursor />
         <Navbar />
         <main id="main-content" role="main" className="relative z-10">{children}</main>
       </body>

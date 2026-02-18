@@ -114,14 +114,8 @@ h1 {
 }
 
 /* ─── Neon glow utility ──────────────────── */
-.neon-glow {
-  box-shadow: 0 0 20px var(--accent-glow), 0 0 40px rgba(198, 255, 0, 0.08);
-}
 .neon-glow-sm {
   box-shadow: 0 0 10px var(--accent-glow);
-}
-.neon-text-glow {
-  text-shadow: 0 0 20px var(--accent-glow);
 }
 
 /* ─── Mobile menu overlay ────────────────── */
@@ -142,7 +136,71 @@ textarea:-webkit-autofill {
 
 /* ─── Button active press ────────────────── */
 button:active:not(:disabled),
-a[role="button"]:active,
-.btn-press:active {
+a[role="button"]:active {
   transform: scale(0.97);
+}
+
+/* ═══════════════════════════════════════════════
+   GLASSMORPHISM UTILITIES
+   Use on overlays, panels, modals, navbar.
+   ═══════════════════════════════════════════════ */
+
+@layer components {
+  .glass {
+    background: rgba(18, 18, 18, 0.75);
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    border: 1px solid rgba(245, 245, 245, 0.06);
+  }
+
+  .nav-glass {
+    background: rgba(18, 18, 18, 0.8);
+    backdrop-filter: blur(28px) saturate(1.5);
+    -webkit-backdrop-filter: blur(28px) saturate(1.5);
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   LIQUID GLASS CURSOR — HOVER STATE
+   Enlarges cursor orb on interactive elements.
+   ═══════════════════════════════════════════════ */
+
+.liquid-cursor.cursor-hover {
+  width: 52px !important;
+  height: 52px !important;
+  margin-left: -26px !important;
+  margin-top: -26px !important;
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(198, 255, 0, 0.22),
+    rgba(198, 255, 0, 0.08) 50%,
+    rgba(255, 255, 255, 0.04) 80%,
+    transparent
+  ) !important;
+  border-color: rgba(198, 255, 0, 0.22) !important;
+  box-shadow: 0 0 30px rgba(198, 255, 0, 0.12),
+    inset 0 0 16px rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   REDUCED MOTION FALLBACKS
+   ═══════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-cursor,
+  .liquid-cursor-trail {
+    display: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   TOUCH / COARSE POINTER FALLBACKS
+   Disable cursor effects, simplify hover states
+   ═══════════════════════════════════════════════ */
+
+@media (pointer: coarse) {
+  .liquid-cursor,
+  .liquid-cursor-trail {
+    display: none !important;
+  }
 }

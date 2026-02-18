@@ -1,7 +1,7 @@
 export default function GridOverlay() {
   return (
     <div
-      className="grid-overlay pointer-events-none fixed inset-0 z-0"
+      className="grid-overlay pointer-events-none fixed inset-0 z-[2]"
       aria-hidden="true"
     />
   );

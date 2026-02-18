@@ -141,8 +141,9 @@ export default function Contact() {
 
           {/* Social links with icons */}
           <Reveal delay={0.25}>
-            <div className="mt-10 flex items-center gap-1 border-t border-border pt-8">
-              <p className="mr-4 text-sm text-secondary-text flex-shrink-0">Find me on</p>
+            <div className="mt-10 flex flex-col items-center gap-3 border-t border-border pt-8">
+              <p className="text-sm text-secondary-text">Find me on</p>
+              <div className="flex items-center justify-center gap-1 flex-wrap">
               {socialLinks.map(({ label, url, icon }) => (
                 <a
                   key={label}
@@ -156,6 +157,7 @@ export default function Contact() {
                   <SocialIcon icon={icon} />
                 </a>
               ))}
+              </div>
             </div>
           </Reveal>
         </div>
