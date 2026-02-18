@@ -11,8 +11,8 @@ interface SectionProps {
 }
 
 const bgMap: Record<BgVariant, string> = {
-  default: 'bg-background',
-  surface: 'bg-surface',
+  default: 'bg-background/85',
+  surface: 'bg-surface/88',
   transparent: 'bg-transparent',
 };
 

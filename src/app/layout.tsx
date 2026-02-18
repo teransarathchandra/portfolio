@@ -5,6 +5,7 @@ import Navbar from "@/components/nav/Navbar";
 import GridOverlay from "@/components/layout/GridOverlay";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 import LiquidGlassCursor from "@/components/effects/LiquidGlassCursor";
+import StarMeshBackgroundMount from "@/components/effects/StarMeshBackgroundMount";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,6 +58,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <SmoothScrollProvider />
+        <StarMeshBackgroundMount />
         <GridOverlay />
         <LiquidGlassCursor />
         <Navbar />

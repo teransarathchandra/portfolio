@@ -5,7 +5,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border bg-background py-10" role="contentinfo">
+    <footer className="border-t border-border bg-background/88 py-10" role="contentinfo">
       <Container>
         {/* Mini CTA */}
         <div className="mb-8 flex flex-col items-center gap-3 text-center sm:flex-row sm:justify-between sm:text-left">
@@ -56,4 +56,3 @@ export default function Footer() {
     </footer>
   );
 }
-

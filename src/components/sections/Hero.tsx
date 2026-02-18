@@ -25,7 +25,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={ref}
-      className="relative flex min-h-screen items-center overflow-hidden bg-background pt-16"
+      className="relative flex min-h-screen items-center overflow-hidden bg-background/82 pt-16"
       aria-labelledby="hero-heading"
     >
       {/* Parallax blobs */}
