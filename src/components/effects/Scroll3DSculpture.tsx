@@ -255,8 +255,8 @@ function AlienShip({ targetProgress }: GlassSculptureProps) {
   return (
     <group ref={shipRef} scale={0.33}>
       <group ref={bodyRef}>
-        <mesh position={[0, -0.02, 0]}>
-          <cylinderGeometry args={[1.08, 1.42, 0.28, 40]} />
+        <mesh position={[0, 0.01, 0]} scale={[1, 0.28, 1]}>
+          <sphereGeometry args={[1.24, 48, 36]} />
           <meshPhysicalMaterial
             color="#79dfc9"
             metalness={0.09}
@@ -269,6 +269,23 @@ function AlienShip({ targetProgress }: GlassSculptureProps) {
             attenuationDistance={0.86}
             attenuationColor="#4db29d"
             envMapIntensity={0.45}
+          />
+        </mesh>
+
+        <mesh position={[0, -0.12, 0]} scale={[0.76, 0.32, 0.76]}>
+          <sphereGeometry args={[1.08, 42, 30]} />
+          <meshPhysicalMaterial
+            color="#6dcfba"
+            metalness={0.08}
+            roughness={0.2}
+            transmission={0.88}
+            thickness={0.52}
+            ior={1.18}
+            clearcoat={1}
+            clearcoatRoughness={0.14}
+            attenuationDistance={0.84}
+            attenuationColor="#53b7a3"
+            envMapIntensity={0.4}
           />
         </mesh>
 
