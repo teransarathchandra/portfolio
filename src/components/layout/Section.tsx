@@ -7,7 +7,6 @@ interface SectionProps {
   children: ReactNode;
   className?: string;
   bg?: BgVariant;
-  /** When true, section gets min-h-screen with flex centering */
   fullHeight?: boolean;
 }
 

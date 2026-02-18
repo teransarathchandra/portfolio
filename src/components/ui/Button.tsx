@@ -28,9 +28,9 @@ const variants: Record<Variant, string> = {
 };
 
 const sizes: Record<Size, string> = {
-  sm: 'px-3.5 py-2 text-sm rounded-lg min-h-[36px]',
-  md: 'px-5 py-2.5 text-sm rounded-xl min-h-[40px]',
-  lg: 'px-7 py-3 text-base rounded-xl min-h-[44px]',
+  sm: 'px-3.5 py-2 text-sm rounded-lg min-h-[40px]',
+  md: 'px-5 py-2.5 text-sm rounded-xl min-h-[44px]',
+  lg: 'px-7 py-3 text-base rounded-xl min-h-[48px]',
 };
 
 export default function Button({

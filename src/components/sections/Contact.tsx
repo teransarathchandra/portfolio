@@ -7,6 +7,7 @@ import Section from '@/components/layout/Section';
 import Container from '@/components/layout/Container';
 import Button from '@/components/ui/Button';
 import Reveal from '@/components/ui/Reveal';
+import { SocialIcon } from '@/components/ui/Icons';
 
 type FormStatus = 'idle' | 'sending' | 'sent';
 
@@ -33,24 +34,35 @@ export default function Contact() {
   return (
     <Section id="contact" bg="surface" fullHeight>
       <Container>
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-2xl">
           <Reveal>
             <p className="mb-2 font-mono text-sm tracking-widest uppercase text-accent">Get in touch</p>
             <h2 id="contact-heading" className="mb-4 text-3xl font-bold text-primary-text sm:text-4xl">
               Let&apos;s work together
             </h2>
-            <p className="mb-10 text-secondary-text leading-relaxed">
-              Have a project in mind or just want to chat? Drop me a message and
-              I&apos;ll get back to you as soon as I can.
+            <p className="mb-8 text-secondary-text leading-relaxed">
+              Open to full-time roles, contract work, and interesting side projects.
+              I typically respond within 24 hours.
             </p>
+          </Reveal>
+
+          {/* Primary direct email CTA */}
+          <Reveal delay={0.1}>
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="mb-8 flex min-w-0 items-center gap-3 rounded-2xl border border-accent/30 bg-accent/[0.06] px-5 py-4 text-sm font-medium text-primary-text transition-colors hover:border-accent/60 hover:bg-accent/[0.10] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+            >
+              <span className="min-w-0 flex-1 truncate">{personalInfo.email}</span>
+              <span className="flex-shrink-0 font-mono text-xs tracking-wider uppercase text-accent">Email Me ↗</span>
+            </a>
           </Reveal>
 
           <Reveal delay={0.15}>
             {status === 'sent' ? (
-              <output className="block rounded-2xl border border-accent/30 bg-accent-dim p-8 text-center">
+              <output className="block rounded-2xl border border-accent/30 bg-accent/[0.05] p-8 text-center">
                 <p className="text-lg font-medium text-primary-text mb-2">Message ready!</p>
                 <p className="text-sm text-secondary-text">
-                  Your email client should have opened. If it didn&apos;t, email me directly at{' '}
+                  Your email client should have opened. If it didn&apos;t, reach me at{' '}
                   <a
                     href={`mailto:${personalInfo.email}`}
                     className="text-accent underline decoration-accent/30 underline-offset-2 transition-colors hover:decoration-accent"
@@ -66,7 +78,7 @@ export default function Contact() {
                 </button>
               </output>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5 text-left" noValidate>
+              <form onSubmit={handleSubmit} className="space-y-5 text-left" noValidate aria-labelledby="contact-heading">
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
                     <label htmlFor="name" className="mb-2 block text-sm font-medium text-primary-text">
@@ -115,39 +127,33 @@ export default function Contact() {
                     value={formData.message}
                     onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
                     className="w-full resize-none rounded-xl border border-border bg-background px-4 py-3 text-sm text-primary-text placeholder-secondary-text/50 transition-[border-color,box-shadow] duration-200 focus:border-accent/40 focus:outline-none focus:ring-2 focus:ring-accent/20"
-                    placeholder="Tell me about your project…"
+                    placeholder="Tell me about your project or opportunity…"
                   />
                 </div>
-                <div className="flex flex-col items-center gap-5 pt-4">
+                <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                   <Button type="submit" size="lg" className="w-full sm:w-auto sm:min-w-[200px]" disabled={status === 'sending'}>
-                    {status === 'sending' ? 'Opening mail…' : 'Send message'}
+                    {status === 'sending' ? 'Sending…' : 'Send Message'}
                   </Button>
-                  <p className="text-sm text-secondary-text">
-                    or email me directly at{' '}
-                    <a
-                      href={`mailto:${personalInfo.email}`}
-                      className="text-accent underline decoration-accent/30 underline-offset-2 transition-colors hover:decoration-accent"
-                    >
-                      {personalInfo.email}
-                    </a>
-                  </p>
                 </div>
               </form>
             )}
           </Reveal>
 
-          {/* Social links */}
+          {/* Social links with icons */}
           <Reveal delay={0.25}>
-            <div className="mt-12 flex items-center justify-center gap-1">
-              {socialLinks.map(({ label, url }) => (
+            <div className="mt-10 flex items-center gap-1 border-t border-border pt-8">
+              <p className="mr-4 text-sm text-secondary-text flex-shrink-0">Find me on</p>
+              {socialLinks.map(({ label, url, icon }) => (
                 <a
                   key={label}
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-lg px-3.5 py-2.5 text-sm text-secondary-text transition-colors hover:text-accent hover:bg-white/5 min-h-[40px] inline-flex items-center"
+                  className="rounded-lg p-2.5 text-secondary-text transition-colors hover:text-accent hover:bg-white/5 min-h-[40px] min-w-[40px] inline-flex items-center justify-center"
+                  aria-label={label}
+                  title={label}
                 >
-                  {label}
+                  <SocialIcon icon={icon} />
                 </a>
               ))}
             </div>

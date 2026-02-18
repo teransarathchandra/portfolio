@@ -22,8 +22,10 @@ export interface SkillGroup {
 export interface Project {
   title: string;
   description: string;
+  oneLiner?: string;
   stack: string[];
   highlights: string[];
+  featured?: boolean;
   github?: string;
   live?: string;
   thumbnail?: string;
@@ -40,6 +42,7 @@ export interface Experience {
 export interface PersonalInfo {
   name: string;
   role: string;
+  tagline?: string;
   location: string;
   bio: string;
   avatar?: string;
@@ -52,6 +55,7 @@ export interface PersonalInfo {
 export const personalInfo: PersonalInfo = {
   name: 'Teran Sarathchandra',
   role: 'Software Engineer',
+  tagline: 'I turn complex problems into fast, accessible products.',
   location: 'San Francisco, CA',
   bio: `I build performant, accessible web applications with modern tooling.
 Passionate about design systems, developer experience, and shipping products
@@ -111,6 +115,7 @@ export const skillGroups: SkillGroup[] = [
 export const projects: Project[] = [
   {
     title: 'Synapse Dashboard',
+    oneLiner: 'Real-time SaaS analytics platform with drag-and-drop dashboards',
     description:
       'A real-time analytics dashboard for SaaS metrics with customizable widgets, team collaboration, and automated reporting.',
     stack: ['Next.js', 'TypeScript', 'D3.js', 'Supabase', 'Tailwind CSS'],
@@ -121,9 +126,11 @@ export const projects: Project[] = [
     ],
     github: 'https://github.com',
     live: 'https://example.com',
+    featured: true,
   },
   {
     title: 'Verdant',
+    oneLiner: 'Open-source accessible design system — 40+ composable primitives',
     description:
       'An open-source design system and component library built for accessibility-first teams, featuring 40+ composable primitives.',
     stack: ['React', 'Storybook', 'Radix UI', 'CSS Modules', 'Changesets'],
@@ -134,9 +141,11 @@ export const projects: Project[] = [
     ],
     github: 'https://github.com',
     live: 'https://example.com',
+    featured: true,
   },
   {
     title: 'NomadAPI',
+    oneLiner: 'Developer-first API gateway with auto-generated docs',
     description:
       'A developer-friendly REST & GraphQL API gateway with rate limiting, caching, and built-in documentation generation.',
     stack: ['Node.js', 'Express', 'GraphQL', 'Redis', 'Docker'],
@@ -146,9 +155,11 @@ export const projects: Project[] = [
       'Used by 1,200+ developers',
     ],
     github: 'https://github.com',
+    featured: true,
   },
   {
     title: 'Pixel Studio',
+    oneLiner: 'Collaborative browser-based pixel art editor with real-time multi-cursor',
     description:
       'A browser-based collaborative pixel art editor with real-time multi-cursor support, layers, and export to spritesheet.',
     stack: ['React', 'Canvas API', 'WebRTC', 'Firebase', 'Tailwind CSS'],

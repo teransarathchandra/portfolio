@@ -10,9 +10,12 @@ export default function Skills() {
       <Container>
         <Reveal>
           <p className="mb-2 font-mono text-sm tracking-widest uppercase text-accent">What I work with</p>
-          <h2 id="skills-heading" className="mb-12 text-3xl font-bold text-primary-text sm:text-4xl">
+          <h2 id="skills-heading" className="mb-3 text-3xl font-bold text-primary-text sm:text-4xl">
             Skills &amp; Technologies
           </h2>
+          <p className="mb-12 max-w-xl text-secondary-text leading-relaxed">
+            Tools and technologies I use regularly — from rapid prototyping to production.
+          </p>
         </Reveal>
 
         <div className="grid gap-8 md:grid-cols-3 items-stretch">

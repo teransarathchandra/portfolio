@@ -99,7 +99,7 @@ export default function MobileMenu({ active, onClose }: MobileMenuProps) {
           className="mt-6"
         >
           <Button href="#contact" size="lg" onClick={onClose}>
-            Hire me
+            Hire Me
           </Button>
         </motion.div>
       </nav>

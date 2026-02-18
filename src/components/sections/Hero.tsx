@@ -74,10 +74,18 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={0.3}>
-            <p className="mb-6 text-xl font-medium text-secondary-text sm:text-2xl md:text-3xl leading-snug">
+            <p className="mb-3 text-xl font-medium text-secondary-text sm:text-2xl md:text-3xl leading-snug">
               {personalInfo.role}
             </p>
           </Reveal>
+
+          {'tagline' in personalInfo && personalInfo.tagline && (
+            <Reveal delay={0.35}>
+              <p className="mb-6 text-lg font-medium text-accent/80 sm:text-xl leading-snug">
+                {personalInfo.tagline}
+              </p>
+            </Reveal>
+          )}
 
           <Reveal delay={0.4}>
             <p className="mb-10 max-w-xl text-base leading-relaxed text-secondary-text sm:text-lg">
@@ -88,10 +96,10 @@ export default function Hero() {
           <Reveal delay={0.5}>
             <div className="flex flex-wrap items-center gap-4">
               <Button href="#projects" size="lg">
-                View my work
+                View My Work
               </Button>
               <Button href="#contact" variant="secondary" size="lg">
-                Get in touch
+                Get In Touch
               </Button>
             </div>
           </Reveal>
@@ -104,7 +112,7 @@ export default function Hero() {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-lg p-2.5 text-secondary-text transition-colors hover:text-accent hover:bg-white/5"
+                  className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-secondary-text transition-colors hover:bg-white/5 hover:text-accent"
                   aria-label={label}
                 >
                   <SocialIcon icon={icon} />

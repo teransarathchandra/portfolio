@@ -2,6 +2,7 @@ import { personalInfo } from '@/content/portfolio';
 import Section from '@/components/layout/Section';
 import Container from '@/components/layout/Container';
 import Reveal from '@/components/ui/Reveal';
+import Button from '@/components/ui/Button';
 
 export default function About() {
   return (
@@ -38,28 +39,40 @@ export default function About() {
               <div className="space-y-4 text-secondary-text leading-relaxed">
                 <p>{personalInfo.bio}</p>
                 <p>
-                  When I&apos;m not coding, you can find me exploring design systems,
-                  contributing to open-source projects, and mentoring early-career
-                  developers. I believe great software is built at the intersection
-                  of solid engineering and thoughtful design.
+                  My sweet spot is the gap between design and engineering — where decisions
+                  about component APIs, token systems, and render performance directly shape
+                  what users see and feel. I&apos;ve shipped across greenfield startups and
+                  established platform teams, and I&apos;ve learned that clarity beats
+                  cleverness every time.
+                </p>
+                <p>
+                  Outside work: open-source tinkering, pixel-art experiments, and the
+                  occasional very long hike.
                 </p>
               </div>
             </Reveal>
 
             <Reveal delay={0.25}>
-              <div className="mt-8 flex flex-wrap gap-8 text-sm">
-                <div>
-                  <span className="text-accent font-mono font-bold text-2xl">5+</span>
-                  <p className="mt-1.5 text-secondary-text">Years Experience</p>
+              <div className="mt-8 grid grid-cols-3 gap-4 text-sm">
+                <div className="rounded-xl border border-border bg-background p-4 text-center">
+                  <span className="block font-mono font-bold text-2xl text-accent">5+</span>
+                  <p className="mt-1 text-secondary-text text-xs leading-snug">Years building for production</p>
                 </div>
-                <div>
-                  <span className="text-accent font-mono font-bold text-2xl">20+</span>
-                  <p className="mt-1.5 text-secondary-text">Projects Shipped</p>
+                <div className="rounded-xl border border-border bg-background p-4 text-center">
+                  <span className="block font-mono font-bold text-2xl text-accent">20+</span>
+                  <p className="mt-1 text-secondary-text text-xs leading-snug">Projects shipped</p>
                 </div>
-                <div>
-                  <span className="text-accent font-mono font-bold text-2xl">10+</span>
-                  <p className="mt-1.5 text-secondary-text">Happy Clients</p>
+                <div className="rounded-xl border border-border bg-background p-4 text-center">
+                  <span className="block font-mono font-bold text-2xl text-accent">3</span>
+                  <p className="mt-1 text-secondary-text text-xs leading-snug">Open-source libs maintained</p>
                 </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.35}>
+              <div className="mt-8 flex flex-wrap justify-center gap-3 sm:justify-start">
+                <Button href="#contact" size="md">Work With Me</Button>
+                <Button href="#projects" variant="secondary" size="md">See My Work</Button>
               </div>
             </Reveal>
           </div>

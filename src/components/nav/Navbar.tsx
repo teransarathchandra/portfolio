@@ -72,7 +72,7 @@ export default function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden md:block">
             <Button href="#contact" size="sm">
-              Hire me
+              Hire Me
             </Button>
           </div>
 
