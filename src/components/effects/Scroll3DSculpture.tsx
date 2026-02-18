@@ -17,6 +17,7 @@ import {
   Mesh,
   MeshBasicMaterial,
   MeshPhysicalMaterial,
+  Vector3,
 } from 'three';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import {
@@ -126,7 +127,7 @@ function GlassSculpture({ targetProgress }: GlassSculptureProps) {
         <sphereGeometry args={[0.72, 64, 64]} />
         <meshPhysicalMaterial
           ref={coreMaterialRef}
-          color="#e6eaee"
+          color="#dbe3ff"
           metalness={0.02}
           roughness={0.08}
           transmission={0.95}
@@ -135,7 +136,7 @@ function GlassSculpture({ targetProgress }: GlassSculptureProps) {
           clearcoat={1}
           clearcoatRoughness={0.06}
           attenuationDistance={1.2}
-          attenuationColor="#d5e4dd"
+          attenuationColor="#7081ff"
           envMapIntensity={0.52}
         />
       </mesh>
@@ -143,7 +144,7 @@ function GlassSculpture({ targetProgress }: GlassSculptureProps) {
       <mesh ref={ringPrimaryRef} rotation={[1.08, 0.14, 0.34]}>
         <torusGeometry args={[1.14, 0.082, 28, 140]} />
         <meshPhysicalMaterial
-          color="#dfe4ea"
+          color="#8b9dff"
           metalness={0.03}
           roughness={0.1}
           transmission={0.93}
@@ -152,7 +153,7 @@ function GlassSculpture({ targetProgress }: GlassSculptureProps) {
           clearcoat={1}
           clearcoatRoughness={0.08}
           attenuationDistance={1}
-          attenuationColor="#d1dce8"
+          attenuationColor="#6d7dff"
           envMapIntensity={0.48}
         />
       </mesh>
@@ -160,7 +161,7 @@ function GlassSculpture({ targetProgress }: GlassSculptureProps) {
       <mesh ref={ringSecondaryRef} rotation={[0.52, 1.08, 0.62]}>
         <torusGeometry args={[0.92, 0.052, 24, 120]} />
         <meshPhysicalMaterial
-          color="#f0f2f5"
+          color="#f1b3dc"
           metalness={0.02}
           roughness={0.12}
           transmission={0.92}
@@ -169,7 +170,7 @@ function GlassSculpture({ targetProgress }: GlassSculptureProps) {
           clearcoat={1}
           clearcoatRoughness={0.1}
           attenuationDistance={0.86}
-          attenuationColor="#dae0e7"
+          attenuationColor="#f08aca"
           envMapIntensity={0.42}
         />
       </mesh>
@@ -178,7 +179,7 @@ function GlassSculpture({ targetProgress }: GlassSculptureProps) {
         <torusGeometry args={[1.14, 0.098, 16, 120]} />
         <meshBasicMaterial
           ref={rimMaterialRef}
-          color="#c6ff00"
+          color="#ff8bd5"
           transparent
           opacity={0.065}
           depthWrite={false}
@@ -186,6 +187,132 @@ function GlassSculpture({ targetProgress }: GlassSculptureProps) {
           side={BackSide}
         />
       </mesh>
+    </group>
+  );
+}
+
+function getShipPathPoint(phase: number, time: number, out: Vector3): Vector3 {
+  const x = Math.sin(phase) * 2.35;
+  const y =
+    Math.cos(phase * 1.4) * 0.78 +
+    Math.sin(phase * 0.45 + time * 0.25) * 0.18;
+  const z = -0.62 + Math.sin(phase * 2.1 + 0.4) * 0.28;
+
+  out.set(x, y, z);
+  return out;
+}
+
+function AlienShip({ targetProgress }: GlassSculptureProps) {
+  const shipRef = useRef<Group>(null);
+  const bodyRef = useRef<Group>(null);
+  const glowRef = useRef<MeshBasicMaterial>(null);
+  const smoothProgressRef = useRef(0);
+  const pathNow = useMemo(() => new Vector3(), []);
+  const pathAhead = useMemo(() => new Vector3(), []);
+  const tangent = useMemo(() => new Vector3(), []);
+
+  useFrame((state, delta) => {
+    const ship = shipRef.current;
+    const body = bodyRef.current;
+    if (!ship || !body) return;
+
+    const smoothProgress = MathUtils.damp(
+      smoothProgressRef.current,
+      targetProgress.current,
+      4.6,
+      delta
+    );
+    smoothProgressRef.current = smoothProgress;
+
+    const phase = smoothProgress * Math.PI * 2;
+    const aheadPhase = phase + 0.035;
+    getShipPathPoint(phase, state.clock.elapsedTime, pathNow);
+    getShipPathPoint(aheadPhase, state.clock.elapsedTime, pathAhead);
+
+    ship.position.x = MathUtils.damp(ship.position.x, pathNow.x, 5, delta);
+    ship.position.y = MathUtils.damp(ship.position.y, pathNow.y, 5, delta);
+    ship.position.z = MathUtils.damp(ship.position.z, pathNow.z, 5, delta);
+
+    ship.lookAt(pathAhead);
+    ship.rotateY(Math.PI / 2);
+
+    tangent.subVectors(pathAhead, pathNow).normalize();
+    const bankTarget = MathUtils.clamp(-tangent.y * 0.55, -0.28, 0.28);
+    body.rotation.z = MathUtils.damp(body.rotation.z, bankTarget, 5.2, delta);
+    body.rotation.x = MathUtils.damp(
+      body.rotation.x,
+      Math.sin(state.clock.elapsedTime * 1.1) * 0.04,
+      4.2,
+      delta
+    );
+
+    if (glowRef.current) {
+      glowRef.current.opacity =
+        0.1 + Math.sin(state.clock.elapsedTime * 2.6 + phase) * 0.03;
+    }
+  });
+
+  return (
+    <group ref={shipRef} scale={0.33}>
+      <group ref={bodyRef}>
+        <mesh position={[0, -0.02, 0]}>
+          <cylinderGeometry args={[1.08, 1.42, 0.28, 40]} />
+          <meshPhysicalMaterial
+            color="#79dfc9"
+            metalness={0.09}
+            roughness={0.16}
+            transmission={0.9}
+            thickness={0.58}
+            ior={1.18}
+            clearcoat={1}
+            clearcoatRoughness={0.12}
+            attenuationDistance={0.86}
+            attenuationColor="#4db29d"
+            envMapIntensity={0.45}
+          />
+        </mesh>
+
+        <mesh position={[0, 0.2, 0]}>
+          <sphereGeometry args={[0.43, 34, 26, 0, Math.PI * 2, 0, Math.PI / 2]} />
+          <meshPhysicalMaterial
+            color="#ffd59f"
+            metalness={0.04}
+            roughness={0.12}
+            transmission={0.93}
+            thickness={0.44}
+            ior={1.2}
+            clearcoat={1}
+            clearcoatRoughness={0.1}
+            attenuationDistance={0.72}
+            attenuationColor="#ffb779"
+            envMapIntensity={0.42}
+          />
+        </mesh>
+
+        <mesh position={[0, -0.06, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <torusGeometry args={[1.19, 0.05, 14, 80]} />
+          <meshBasicMaterial
+            ref={glowRef}
+            color="#8df0d5"
+            transparent
+            opacity={0.1}
+            toneMapped={false}
+            depthWrite={false}
+          />
+        </mesh>
+
+        <mesh position={[0, -0.25, 0]}>
+          <coneGeometry args={[0.4, 0.95, 22, 1, true]} />
+          <meshBasicMaterial
+            color="#ffd9a6"
+            transparent
+            opacity={0.045}
+            toneMapped={false}
+            depthWrite={false}
+            side={BackSide}
+          />
+        </mesh>
+      </group>
     </group>
   );
 }
@@ -246,15 +373,17 @@ export default function Scroll3DSculpture() {
         gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }}
         fallback={null}
       >
-        <ambientLight intensity={0.2} color="#f5f5f5" />
-        <directionalLight position={[3.5, 2.6, 4.2]} intensity={0.48} color="#f5f5f5" />
-        <pointLight position={[-2.4, -1.2, 2.8]} intensity={0.14} color="#c6ff00" />
+        <ambientLight intensity={0.2} color="#eff2ff" />
+        <directionalLight position={[3.5, 2.6, 4.2]} intensity={0.48} color="#f1f4ff" />
+        <pointLight position={[-2.4, -1.2, 2.8]} intensity={0.16} color="#7788ff" />
+        <pointLight position={[2.2, 1.4, 2.1]} intensity={0.12} color="#f28ccf" />
 
         <Suspense fallback={null}>
           <Environment preset="studio" />
         </Suspense>
 
         <GlassSculpture targetProgress={targetProgress} />
+        <AlienShip targetProgress={targetProgress} />
       </Canvas>
     </div>
   );
